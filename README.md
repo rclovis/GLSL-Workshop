@@ -13,7 +13,7 @@ La carte graphique va exécuter ce shader **à chaque frame pour chaque primitiv
 La nature de la **primitive** en question dépend du type de shader, elle peut être un **sommet** pour le vertex shader, un **triangle** pour le geometry shader, un **pixel** pour le fragment shader etc...
 
 ## Comment l'ordinateur affiche ?
-![[pipeline.png]]
+![image](assets/pipeline.png)
 Ce que je vous ai mis au-dessus ce sont la totalité des étapes par lesquelles passe l'ordinateur pour afficher un triangle à l'écran (cette liste peut changer en fonction des programmes).
 
 La seule étape qu'on va retenir aujourd'hui c'est le **fragment shader**.
@@ -26,7 +26,7 @@ Pour coder et tester nos programmes en temps réel on va utiliser [Shadertoy](ht
 qui est un site web d’édition et de visualisation de shader.
 
 Après avoir crée un nouveau projet vous allez vous retrouver avec ça:
-![[homePage.png]]
+![image](assets/homePage.png)
 
 > [!warning]
 > Je vous conseille de créer un compte pour sauvegarder votre travail, le navigateur peut crash.
@@ -101,7 +101,7 @@ La fonction `length` donne la longueur d'un vecteur. Récupérez la longueur de 
 > `uv` étant les coordonnés de notre pixel c'est également le vecteur qui relie **l'origine au pixel**.
 
 Vous devriez obtenir ce résultat:
-![[t1.png]]
+![image](assets/t1.png)
 
 Plus le pixel va être proche de l'origine plus il va s'assombrir.
 Vous remarquerez que l'origine se trouve **en bas à gauche** de l'écran.
@@ -114,13 +114,13 @@ Pour ça on va juste faire en sorte que le vecteur `uv` ne parte plus de l'origi
 > En prenant le point **A** et **B** on a le vecteur **AB**
 > **AB = B - A**
 
-![[t2.png]]
+![image](assets/t2.png)
 
 On remarque que le cercle est étiré. C'est dû au fait que comme on a maintenant **x qui varie de 0.0 à 1.0** et **y qui varie de 0.0 à 1.0** alors on a dans le code **la même longueur en x et en y**.
 
 Pour corriger ce problème, on va multiplier notre `uv.x` par le ratio de notre écran (`iResolution.x / iResolution.y`).
 
-![[t3.png]]
+![image](assets/t3.png)
 
 ## Task 5
 Maintenant on va ajouter de la couleur.
@@ -144,7 +144,7 @@ Enfin on aura:
 fragColor = vec4(color, 1.0);
 ```
 
-![[t4.png]]
+![image](assets/t4.png)
 Si vous voulez changer les couleurs vous pouvez changer **a**, **b**, **c** et **d** de la fonction `palette`.
 Ce site aide à créer de nouvelles palettes: [Palettes](http://dev.thi.ng/gradients/)
 
@@ -154,7 +154,7 @@ vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
 ```
 Ici j'en profite aussi pour dé-zoomer un peu la fenêtre.
 
-![[t5.png]]
+![image](assets/t5.png)
 
 ## Task 6
 On ajoute du mouvement.
@@ -163,7 +163,7 @@ Pour ajouter du mouvement on va utiliser la constante `iTime` qui contient la du
 
 En ajoutant simplement `iTime` à `d` on aura des changements de couleurs.
 
-![[g2.gif]]
+![image](assets/g2.gif)
 Ici je divise aussi `iTime` par deux pour ralentir le mouvement.
 
 ## Task 7
@@ -178,14 +178,14 @@ float roundToDecimal(float value, float multiplier) {
 
 On va arrondir `uv.x` et `uv.y` en donnant le multiplier `10.0`.
 
-![[g1.gif]]
+![image](assets/g1.gif)
 
 Et voilà en une vingtaine de lignes on a un résultat sympa qui aurait été vraiment long à faire en sfml.
 
 ## Bonus
 Si vous voulez aller plus loin vous pouvez essayer d'obtenir ce résultat:
 
-![[g3.gif]]
+![image](assets/g3.gif)
 
 > [!tip]
 > Utilisez la fonction GLSL `step`
